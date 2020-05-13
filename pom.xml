@@ -46,7 +46,7 @@
 								<artifactItem>
 									<groupId>org.springframework</groupId>
 									<artifactId>gs-spring-boot-docker</artifactId>
-									<version>0.1.0</version>
+									<version>${project.version}</version>
 									<type>jar</type>
 									<outputDirectory>${project.build.directory}/dependency</outputDirectory>
 								</artifactItem>

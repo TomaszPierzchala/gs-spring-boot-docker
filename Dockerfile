@@ -1,15 +1,16 @@
-FROM maven:3.6-openjdk-8-slim AS build
+FROM maven:3.6-jdk-8-alpine AS build
 RUN mkdir -p /workspace
 WORKDIR /workspace
-COPY src src
-COPY pom.xml pom.xml
 
-RUN mvn -B -f pom.xml clean package
+COPY pom.xml pom.xml
+RUN mvn -e -B dependency:resolve dependency:resolve-plugins
+
+COPY src src
+RUN mvn -e -B package
 
 #-------------------------------------
-FROM openjdk:8-jdk-slim-buster
-RUN addgroup  spring1  
-RUN adduser  --system spring2  
+FROM openjdk:8-jre-alpine
+RUN addgroup  spring1 && adduser  --system spring2  
 USER spring2:spring1
 
 WORKDIR /home/spring

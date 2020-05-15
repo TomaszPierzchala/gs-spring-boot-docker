@@ -7,7 +7,7 @@ COPY pom.xml pom.xml
 RUN mvn -B -f pom.xml clean package
 
 #-------------------------------------
-FROM openjdk:8-jdk-alpine
+FROM openjdk:8-jdk-slim-buster
 RUN addgroup  spring1  
 RUN adduser  --system spring2  
 USER spring2:spring1
